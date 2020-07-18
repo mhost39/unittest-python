@@ -25,7 +25,9 @@ def convert_letters_input(letters):
     if len(M) < 1:
         return "not supported"
     for c in M:
-        if (not c.isalpha()) and (not c == ' ') :
+        if ( (not c.isalpha()) and (not c == ' ') )  :
+            return "not supported"
+        if (c.isalpha() and c.isupper()):
             return "not supported"
 
     result = letters_mapped[M[0]]
@@ -62,32 +64,24 @@ def convert_digits_input(digits):
         result += get_key(i)
     return result
 
- 
-# seed_file1_in = open("seed-file1", "r")
-# seed_file1_out = open("seed-file1.out", "a")
-seed_file1_in = open("letters_mapped/seed-file1", "r")
-seed_file1_out = open("letters_mapped/seed-file1.out", "a")
-count = 1
-for t in seed_file1_in:
-    result = convert_letters_input(t)
-    seed_file1_out.write("Line #"+ str(count) +": " + result + '\n')
-    count +=1
-seed_file1_in.close()
-seed_file1_out.close()
+def convert_letters():
+    seed_file1_in = open("letters_mapped/seed-file1", "r")
+    seed_file1_out = open("letters_mapped/seed-file1.out", "a")
+    count = 1
+    for t in seed_file1_in:
+        result = convert_letters_input(t)
+        seed_file1_out.write("Line #"+ str(count) +": " + result + '\n')
+        count +=1
+    seed_file1_in.close()
+    seed_file1_out.close()
 
-
-# seed_file2_in = open("seed-file2", "r")
-# seed_file2_out = open("seed-file2.out", "a")
-seed_file2_in = open("letters_mapped/seed-file2", "r")
-seed_file2_out = open("letters_mapped/seed-file2.out", "a")
-count = 1
-for t in seed_file2_in:
-    result = convert_digits_input(t[2:])
-    seed_file2_out.write("Line #"+ str(count) +": " + result + '\n')
-    count +=1
-seed_file2_in.close()
-seed_file2_out.close()
-
-
-
-print("\r")
+def convert_digits():
+    seed_file2_in = open("letters_mapped/seed-file2", "r")
+    seed_file2_out = open("letters_mapped/seed-file2.out", "a")
+    count = 1
+    for t in seed_file2_in:
+        result = convert_digits_input(t[2:])
+        seed_file2_out.write("Line #"+ str(count) +": " + result + '\n')
+        count +=1
+    seed_file2_in.close()
+    seed_file2_out.close()
